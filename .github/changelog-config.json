@@ -1,0 +1,19 @@
+{
+  "categories": [
+    {
+      "title": "Nuevas características",
+      "labels": ["feature", "enhancement"]
+    },
+    {
+      "title": "Correcciones de errores",
+      "labels": ["fix", "bug"]
+    },
+    {
+      "title": "Cambios internos",
+      "labels": ["chore", "refactor"]
+    }
+  ],
+  "template": "# Changelog para {{owner}}/{{repo}}\n\n## Versión {{tagName}}\n\n{{#each categories}}\n### {{title}}\n{{#each pullRequests}}\n- {{this.title}} (por @{{this.user.login}} en PR [#{{this.number}}]({{this.url}}))\n{{/each}}\n{{/each}}",
+  "pr_template": "- {{title}} (#{{number}})",
+  "max_pull_requests": 50
+}
