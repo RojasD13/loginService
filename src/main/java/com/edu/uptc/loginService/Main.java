@@ -2,10 +2,10 @@ package com.edu.uptc.loginService;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.PropertySource;
+// import org.springframework.context.annotation.PropertySource;
 
 @SpringBootApplication
-@PropertySource("classpath:secrets/.env.properties")
+// @PropertySource("classpath:secrets/.env.properties")
 public class Main {
 
 	public static void main(String[] args) {
