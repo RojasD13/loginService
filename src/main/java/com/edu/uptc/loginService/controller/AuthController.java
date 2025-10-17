@@ -26,8 +26,8 @@ public class AuthController {
         return userService.processLogout(req);
     }
 
-    @GetMapping("/isLogin")
-    public ResponseEntity<?> isLogin(@RequestParam String email) {
+    @PostMapping("/isLogin")
+    public ResponseEntity<?> isLogin(@RequestBody String email) {
         return ResponseEntity.ok(userService.isLoggedIn(email));
     }
 }
