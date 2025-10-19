@@ -1,5 +1,6 @@
 package com.edu.uptc.loginService.controller;
 
+import com.edu.uptc.loginService.dto.EmailRequest;
 import com.edu.uptc.loginService.dto.LoginRequest;
 import com.edu.uptc.loginService.service.UserService;
 
@@ -27,7 +28,7 @@ public class AuthController {
     }
 
     @PostMapping("/isLogin")
-    public ResponseEntity<?> isLogin(@RequestBody String email) {
-        return ResponseEntity.ok(userService.isLoggedIn(email));
+    public ResponseEntity<?> isLogin(@RequestBody EmailRequest request) {
+        return ResponseEntity.ok(userService.isLoggedIn(request.getEmail()));
     }
 }
