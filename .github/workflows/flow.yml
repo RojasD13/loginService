@@ -51,6 +51,8 @@ jobs:
 
       # 5. Ejecutar pruebas
       - name: Run tests
+        env:
+          PORT: 8081
         run: mvn -B test
 
       # 6. Subir reportes de pruebas
