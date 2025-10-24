@@ -37,7 +37,7 @@ jobs:
   test:
     runs-on: ubuntu-latest
     needs: build   # Se ejecuta solo si build fue exitoso
-  
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -48,12 +48,6 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
           cache: maven
-
-      # # crear archivo dummy antes de ejecutar los tests
-      # - name: Prepare dummy environment file
-      #   run: |
-      #     mkdir -p src/main/resources/secrets
-      #     cp src/main/resources/secrets/.env.properties.example src/main/resources/secrets/.env.properties
 
       # 5. Ejecutar pruebas
       - name: Run tests
@@ -66,3 +60,4 @@ jobs:
         with:
           name: surefire-reports
           path: target/surefire-reports/
+          
