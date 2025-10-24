@@ -49,11 +49,11 @@ jobs:
           distribution: 'temurin'
           cache: maven
 
-      # crear archivo dummy antes de ejecutar los tests
-      - name: Prepare dummy environment file
-        run: |
-          mkdir -p src/main/resources/secrets
-          cp src/main/resources/secrets/.env.properties.example src/main/resources/secrets/.env.properties
+      # # crear archivo dummy antes de ejecutar los tests
+      # - name: Prepare dummy environment file
+      #   run: |
+      #     mkdir -p src/main/resources/secrets
+      #     cp src/main/resources/secrets/.env.properties.example src/main/resources/secrets/.env.properties
 
       # 5. Ejecutar pruebas
       - name: Run tests
