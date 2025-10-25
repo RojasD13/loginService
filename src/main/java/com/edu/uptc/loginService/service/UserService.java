@@ -77,4 +77,17 @@ public class UserService {
                         .body(errorMessage));
     }
 
+    @Transactional
+    public ResponseEntity<?> registerUser(LoginRequest req) {
+        if (repo.findByEmail(req.getEmail()).isPresent()) {
+            return ResponseEntity.status(HttpStatus.CONFLICT)
+                    .body("El usuario ya existe");
+        }
+
+        User user = new User(req.getEmail(), passwordEncoder.encode(req.getPassword()));
+        repo.save(user);
+
+        return ResponseEntity.status(HttpStatus.CREATED)
+                .body("Usuario registrado correctamente");
+    }
 }
