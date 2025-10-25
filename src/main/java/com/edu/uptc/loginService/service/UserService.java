@@ -6,6 +6,7 @@ import com.edu.uptc.loginService.repository.UserRepository;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -16,9 +17,15 @@ import java.util.function.Supplier;
 public class UserService {
 
     private final UserRepository repo;
+    private final PasswordEncoder passwordEncoder;
 
-    public UserService(UserRepository repo) {
+    public UserService(UserRepository repo, PasswordEncoder passwordEncoder) {
         this.repo = repo;
+        this.passwordEncoder = passwordEncoder;
+    }
+
+    public boolean isLoggedIn(String email) {
+        return repo.findByEmail(email).map(User::isLogin).orElse(false);
     }
 
     public Optional<User> findByEmail(String email) {
@@ -33,9 +40,9 @@ public class UserService {
     }
 
     @Transactional
-    private Optional<User> login(String email, String password) {
+    private Optional<User> login(String email, String rawPassword) {
         return repo.findByEmail(email)
-                .filter(user -> user.getPassword().equals(password))
+                .filter(user -> passwordEncoder.matches(rawPassword, user.getPassword()))
                 .map(user -> {
                     user.setLogin(true);
                     return repo.save(user);
@@ -70,7 +77,4 @@ public class UserService {
                         .body(errorMessage));
     }
 
-    public boolean isLoggedIn(String email) {
-        return repo.findByEmail(email).map(User::isLogin).orElse(false);
-    }
 }
