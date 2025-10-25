@@ -31,4 +31,9 @@ public class AuthController {
     public ResponseEntity<?> isLogin(@RequestBody EmailRequest request) {
         return ResponseEntity.ok(userService.isLoggedIn(request.getEmail()));
     }
+
+    @PostMapping("/register")
+    public ResponseEntity<?> register(@RequestBody LoginRequest req) {
+        return userService.registerUser(req);
+    }
 }
