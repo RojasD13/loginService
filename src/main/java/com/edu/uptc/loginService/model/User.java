@@ -1,5 +1,7 @@
 package com.edu.uptc.loginService.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -26,7 +28,8 @@ public class User {
     private String email;
 
     @Column(nullable = false)
-    private String password; // texto plano (académico)
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    private String password;
 
     @Column(name = "is_login", nullable = false)
     private boolean isLogin = false;
